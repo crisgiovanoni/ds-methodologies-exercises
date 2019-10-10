@@ -19,12 +19,6 @@ df = wrangle.wrangle_telco()
 # verify acquisition
 df.info()
 
-import pandas as pd
-from sklearn.model_selection import train_test_split
-
-train, test = train_test_split(df, train_size = .80, random_state = 123)
-
-
 split_my_data(X, y, train_pct)
 standard_scaler()
 scale_inverse()
