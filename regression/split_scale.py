@@ -1,9 +1,3 @@
-# Create split_scale.py that will contain the functions that follow.
-# Each scaler function should create the object, fit and transform both train and test.
-# They should return the scaler, train dataframe scaled, test dataframe scaled.
-# Be sure your indices represent the original indices from train/test, as those represent the indices from the original dataframe.
-# Be sure to set a random state where applicable for reproducibility!
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -17,9 +11,11 @@ import env
 from sklearn.model_selection import train_test_split
 
 def split_to_scale(dataframe):
+    # Use to split data into a train and test data with an 80-20 split
     return train_data, test_data = train_test_split(dataframe, train_size = 0.8, random_state = 123)
 
 def split_my_data(X, y, train_pct):
+    # Use when X and y data frames are available, and split train and test for modeling
     return X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=123)
 
 def standard_scaler(train_data, test_data):
