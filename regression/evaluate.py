@@ -1,5 +1,5 @@
 import seaborn as sns
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, explained_variance_score
 from math import sqrt
 
 def plot_residuals(x, y, dataframe):
@@ -14,10 +14,10 @@ def regression_errors(y, yhat):
     Takes in y and yhat, then
     Returns the sum of squared errors (SSE), explained sum of squares (ESS), total sum of squares (TSS), mean squared error (MSE) and root mean squared error (RMSE).
     """
-    sse = (mean_squared_error(y, yhat)) * len(y)
     mse = mean_squared_error(y,yhat)
+    sse = mse * len(y)
+    ess = ((yhat - y.mean())**2).sum()
     rmse = sqrt(mse)
-    ess = sum((y - y.mean())**2)
     tss = ess + sse
     return sse, mse, rmse, ess, tss
 
@@ -41,3 +41,11 @@ def better_than_baseline(ess, sse_baseline,ols_model):
     r2 = ess/sse_baseline
     f_pval = ols_model.f_pvalue
     f_pval < 0.05 = True
+
+def model_significance(ols_model):
+    """
+    Takes the ols model as input, and
+    Returns the amount of variance explained in your model, and the value telling you whether the correlation between the model and the y are statistically significant.
+    """
+    r2 = ols_model.rsquared
+    return r2, ols.model.f_pvalue, ols_model
