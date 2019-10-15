@@ -6,14 +6,14 @@ import env
 def get_db_url(db):
     return f'mysql+pymysql://{env.user}:{env.password}@{env.host}/{db}'
 
-def get_data_from_mysql():
+def get_data_from_mysql(db):
     query = '''
     SELECT *
     FROM customers
     JOIN internet_service_types USING (internet_service_type_id)
     WHERE contract_type_id = 3
     '''
-    df = pd.read_sql(query, get_db_url('telco_churn'))
+    df = pd.read_sql(query, get_db_url(f'{db}'))
     return df
 
 def clean_data(df):
