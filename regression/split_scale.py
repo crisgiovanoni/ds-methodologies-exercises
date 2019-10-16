@@ -10,13 +10,15 @@ import env
 
 from sklearn.model_selection import train_test_split
 
-def split_to_scale(dataframe):
+def split_to_scale(df):
     # Use to split data into a train and test data with an 80-20 split
-    return train_data, test_data = train_test_split(dataframe, train_size = 0.8, random_state = 123)
+    train_data, test_data = train_test_split(df, train_size=0.8, random_state=123)
+    return train_data, test_data
 
 def split_my_data(X, y, train_pct):
     # Use when X and y data frames are available, and split train and test for modeling
-    return X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=123)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_pct, random_state=123)
+    return X_train, X_test, y_train, y_test
 
 def standard_scaler(train_data, test_data):
     # Creates a Standard Scaler object and fit Train Data 
