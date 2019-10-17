@@ -8,7 +8,7 @@ def get_db_url(db):
 
 def get_data_from_mysql():
     query = '''
-    SELECT customer_id, monthly_charges, tenure, total_charges
+    SELECT customer_id, monthly_charges, tenure, multiple_lines, total_charges
     FROM customers
     WHERE contract_type_id = 3
     ORDER BY total_charges DESC;
@@ -17,6 +17,7 @@ def get_data_from_mysql():
     return df
 
 # df = get_data_from_mysql()
+# df.head()
 
 # def clean_data(df):
 #     df = df[['customer_id', 'total_charges', 'monthly_charges', 'tenure']]
@@ -29,7 +30,8 @@ def clean_data(df):
     df.total_charges = df.total_charges.astype(float)
     return df
 
-# clean_data(df)
+# df = clean_data(df)
+# df.head()
     
 def wrangle_telco():
     return clean_data(get_data_from_mysql())

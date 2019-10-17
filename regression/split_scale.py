@@ -9,15 +9,17 @@ import wrangle
 import env
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, QuantileTransformer, PowerTransformer, MinMaxScaler, RobustScaler
 
-def split_to_scale(df):
+
+def split_to_scale(df, train_ratio=0.8):
     # Use to split data into a train and test data with an 80-20 split
-    train_data, test_data = train_test_split(df, train_size=0.8, random_state=123)
+    train_data, test_data = train_test_split(df, train_size=train_ratio, random_state=123)
     return train_data, test_data
 
-def split_my_data(X, y, train_pct):
+def split_my_data(X, y, train_ratio=0.8):
     # Use when X and y data frames are available, and split train and test for modeling
-    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_pct, random_state=123)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_ratio, random_state=123)
     return X_train, X_test, y_train, y_test
 
 def standard_scaler(train_data, test_data):
