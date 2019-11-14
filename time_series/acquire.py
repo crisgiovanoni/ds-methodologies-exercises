@@ -1,5 +1,7 @@
 import pandas as pd
 import requests
+from os import path
+
 from pprint import pprint
 
 # def get_grocery(dict):
@@ -19,11 +21,6 @@ from pprint import pprint
 # def get_germany():
 #     germany = pd.read_csv("/Users/cris/codeup-data-science/ds-methodologies-exercises/time_series/opsd_germany_daily.csv")
 #     return germany
-
-from os import path
-
-import requests
-import pandas as pd
 
 BASE_URL = 'https://python.zach.lol'
 API_BASE = BASE_URL + '/api/v1'
@@ -86,6 +83,15 @@ def get_sale_data(use_cache=True):
     df = get_sale_data_from_api()
     df.to_csv('sales.csv', index=False)
     return df
+
+def get_all_data():
+    sales = get_sale_data()
+    items = get_item_data()
+    stores = get_store_data()
+
+    sales = sales.rename(columns={'item': 'item_id', 'store': 'store_id'})
+
+    return sales.merge(items, on='item_id').merge(stores, on='store_id')
 
 def get_opsd_data(use_cache=True):
     if use_cache and path.exists('opsd.csv'):
