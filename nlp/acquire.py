@@ -13,7 +13,7 @@ def make_dictionary_from_article(url):
     soup = BeautifulSoup(response.content, 'html.parser')
     
     #get title through selector or html title element 
-    title = soup.title
+    title = soup.title.get_text()
 
     body = soup.find('div',class_="mk-single-content")
     body = body.text
