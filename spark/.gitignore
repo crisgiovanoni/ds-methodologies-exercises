@@ -1,0 +1,11 @@
+.DS_Store
+env.py
+
+.ipynb_checkpoints/
+__pycache__
+.vscode/
+Thumbs.db
+case.csv
+customers.csv
+dept.csv
+
