@@ -6,6 +6,6 @@ __pycache__
 .vscode/
 Thumbs.db
 case.csv
-customers.csv
+source.csv
 dept.csv
 
